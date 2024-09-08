@@ -35,7 +35,7 @@ const searchBtn = document.getElementById('searchBtn')
 const container = document.getElementById('container')
 const display = document.getElementById('display')
 
-fetchWeather('kathmandu')
+fetchWeather('kathmandu') //default weather details
 
 searchBtn.addEventListener('click', () => {
     searchTask()
@@ -62,7 +62,6 @@ async function fetchWeather(city) {
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
         const data = await response.json()
-        console.log(data)
         displayWeather(data)
     } catch {
         display.innerHTML = `<h2>"${city}" doesnot exist</h2>`
