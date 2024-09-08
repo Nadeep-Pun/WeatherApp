@@ -38,6 +38,16 @@ const display = document.getElementById('display')
 fetchWeather('kathmandu')
 
 searchBtn.addEventListener('click', () => {
+    searchTask()
+})
+
+inputText.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchTask()
+    }
+})
+
+function searchTask() {
     if (!inputText.value) return
     if (checkVisibility) {
         display.innerHTML = htmlTags
@@ -46,20 +56,7 @@ searchBtn.addEventListener('click', () => {
     container.style.visibility = 'hidden'
     fetchWeather(inputText.value)
     inputText.value = ''
-})
-
-inputText.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        if (!inputText.value) return
-        if (checkVisibility) {
-            display.innerHTML = htmlTags
-            checkVisibility = !checkVisibility
-        }
-        container.style.visibility = 'hidden'
-        fetchWeather(inputText.value)
-        inputText.value = ''
-    }
-})
+}
 
 async function fetchWeather(city) {
     try {
